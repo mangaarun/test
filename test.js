@@ -8,3 +8,11 @@ var intId = setInterval(function(){
     }
 },$i);
 void(0);}
+
+
+//prompt for login captcha
+javascript:{
+  var cap = prompt("Please enter captcha", "");
+  document.getElementById("ccMain_txtEnterCode").value = cap;
+  void(0);
+}
