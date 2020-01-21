@@ -51,3 +51,27 @@ javascript:{$i=200;var intId = setInterval(function(){if($("#btnLogin").get(0).s
     a.style.backgroundColor = "rgb(0,255,12)";
     captcha.parentNode.appendChild(a);
 })();
+
+
+/// new booking
+//  ==UserScript
+// @name        New Booking
+// @version     1.0
+// @include       https://onlinebooking.sand.telangana.gov.in/Order/*
+// @include       https://onlinebooking.sand.telangana.gov.in/*
+// @grant   GM_getValue
+// @grant   GM_setValue
+// ==/UserScript==
+
+(function(){
+    'use strict';
+    if(window.location.href.indexOf("Order/BOOKINGHOME.aspx") !=-1){
+        var alreadyOpened = JSON.parse(GM_getValue("alreadyOpened",null));
+        if(!alreadyOpened){
+            GM_setValue("alreadyOpened", JSON.stringify(true));
+            document.querySelector(".menuH").querySelectorAll("li")[0].querySelector("a").click();
+        }
+    } else {
+        GM_setValue("alreadyOpened", JSON.stringify(false));
+    }
+})();
