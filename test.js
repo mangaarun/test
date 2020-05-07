@@ -113,8 +113,8 @@ javascript:{$i=200;var intId = setInterval(function(){if($("#btnLogin").get(0).s
 // @grant        none
 // ==/UserScript==
 
-var username = '7731867897';
-var pass='7731867897';
+var username = '12354577';
+var pass='1234577';
 
 var b = new Event('blur');
 var list = document.querySelectorAll('input[type="text"]');
