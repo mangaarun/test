@@ -101,3 +101,37 @@ javascript:{$i=200;var intId = setInterval(function(){if($("#btnLogin").get(0).s
     }
 })();
 
+//login
+// ==UserScript==
+// @name         Login
+// @version      0.35
+// @match        http://onlinebooking.sand.telangana.gov.in/Masters/HOME.aspx
+// @match        https://onlinebooking.sand.telangana.gov.in/MASTERS/HOME.ASPX
+// @match        https://onlinebooking.sand.telangana.gov.in/Masters/Home.aspx
+// @match        http://onlinebooking.sand.telangana.gov.in/*
+// @require https://onlinebooking.sand.telangana.gov.in/Scripts/jquery-1.9.0.min.js
+// @grant        none
+// ==/UserScript==
+
+var username = '7731867897';
+var pass='7731867897';
+
+var b = new Event('blur');
+var list = document.querySelectorAll('input[type="text"]');
+if(list.length > 0){
+    for(var i=0; i < list.length; i++){
+        if(list[i].style.width == '140px'){
+            list[i].value= username;
+        }
+    }
+}
+var list1 = document.querySelectorAll('input[type="password"]');
+if(list1.length > 0){
+    for(var j=0; j < list1.length; j++){
+        if(list1[j].style.width == '140px'){
+            list1[j].value= pass;
+             list1[j].dispatchEvent(b);
+        }
+    }
+}
+
