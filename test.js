@@ -52,7 +52,7 @@ javascript:{$i=200;var intId = setInterval(function(){if($("#btnLogin").get(0).s
     captcha.parentNode.appendChild(a);
 })();
 
-
+// working 07/05/2020
 /// new booking
 //  ==UserScript
 // @name        New Booking
@@ -75,3 +75,29 @@ javascript:{$i=200;var intId = setInterval(function(){if($("#btnLogin").get(0).s
         GM_setValue("alreadyOpened", JSON.stringify(false));
     }
 })();
+
+// working 07/05/2020
+// ==UserScript==
+// @name        District
+// @version     1.0
+// @include     https://onlinebooking.sand.telangana.gov.in/Order/NEWBOOKING.aspx?KLM=*
+// @include     https://onlinebooking.sand.telangana.gov.in/*
+// @grant       GM_getValue
+// @grant       GM_setValue
+// @run-at  document-end
+// ==/UserScript==
+
+(function(){
+    'use strict';
+    if(window.location.href.indexOf("Order/NEWBOOKING.aspx") !=-1){
+        var distselected = JSON.parse(GM_getValue("distselected",null));
+        if(!distselected){
+            GM_setValue("distselected", JSON.stringify(true));
+            document.querySelector(".Dropdown").value = "27";
+            PopulateGrid("27");
+        }
+    } else {
+        GM_setValue("distselected", JSON.stringify(false));
+    }
+})();
+
