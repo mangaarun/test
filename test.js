@@ -135,3 +135,82 @@ if(list1.length > 0){
     }
 }
 
+// ==UserScript==
+// @name         fayazHAYATH
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://onlinebooking.sand.telangana.gov.in/Order/BORDERSUB.aspx*
+// @match        https://onlinebooking.sand.telangana.gov.in/Order/BORDERSUB.aspx*
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    var DISTRICT_ID = 27;
+    var RADIO_BUTTON_TEXT = "Mahadevpur 1";
+    var changeEvent = new Event('change');
+    var clickEvent = new Event('click');
+    function waitForTheElement(searchElement, callback) {
+        var element;
+        var intervalId = setInterval(function () {
+             element = searchElement();
+            if(element) {
+                clearInterval(intervalId);
+               callback(element);
+            }
+        },100);
+    }
+    function selectDistrict1(nextStep) {
+        waitForTheElement(function() {
+            return document.querySelector("#ccMain_tblDistricts").querySelector("select");
+        }, function(elem) {
+            elem.value = DISTRICT_ID;
+            elem.dispatchEvent(changeEvent);
+            nextStep();
+        });
+    }
+
+    function selectStockYard(nextStep){
+        waitForTheElement(function(){
+             var elem = null;
+            var trElements = Array.from(document.querySelectorAll(".GridviewScrollTable")[0].querySelectorAll("tr"));
+            if(!trElements) {return null};
+    trElements.some(function (tr, index) {
+            if (index == 0) { return 0;}
+            if (tr.querySelectorAll("td")[2].innerHTML.trim().toLowerCase() == RADIO_BUTTON_TEXT.trim().toLowerCase()) {
+                elem = tr.querySelector("input");
+                return true;
+            }
+        }
+    );
+    return elem;
+        },function(elem){
+            elem.click();
+            nextStep();
+        });
+    }
+
+    function selectPurpose(nextStep){
+        waitForTheElement(function(){
+            return document.querySelector("select[name='ctl00$ccMain$ddlsandpurpose']");
+        },function(elem){
+            elem.value = "2";
+            //document.querySelector('select[name="ctl00$ccMain$ddlVehicleType"]').value = "L";
+            document.querySelector('input[name="ctl00$ccMain$txtVehzNo"]').value = "";
+            nextStep();
+        });
+    }
+
+    selectDistrict1(function(){
+        selectStockYard(function(){
+            selectPurpose(function(){
+                selectDistrict2(function(){
+                    selectMandal(selectVillage);
+                });
+            });
+        });
+    });
+})();
+
