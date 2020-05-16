@@ -214,3 +214,62 @@ if(list1.length > 0){
     });
 })();
 
+// service unavailable
+// ==UserScript==
+// @name         The service is unavailable.
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://onlinebooking.sand.telangana.gov.in/MASTERS/HOME.ASPX
+// @match        https://onlinebooking.sand.telangana.gov.in/Masters/Home.aspx
+// @match        https://onlinebooking.sand.telangana.gov.in/MASTERS/HOME.aspx
+// @match        https://onlinebooking.sand.telangana.gov.in/Masters/Home.ASPX
+// @grant        none
+// ==/UserScript==
+if (document.body.innerHTML == "The service is unavailable.")
+{
+window.location = "https://onlinebooking.sand.telangana.gov.in/Masters/Home.aspx";
+}
+
+//reload captcha
+// ==UserScript==
+// @name        Reload captcha
+// @namespace    https://workspace.tramvm.com/
+// @version      1.0
+// @description  Button manual reload captcha.
+// @author       workspace.gold@gmail.com
+// @match        https://onlinebooking.sand.telangana.gov.in/Masters/HOME.aspx
+// @match        https://onlinebooking.sand.telangana.gov.in/Masters/Home.aspx
+// @match        https://onlinebooking.sand.telangana.gov.in/MASTERS/HOME.ASPX
+// @grant        none
+// ==/UserScript==
+
+(function() {
+    'use strict';
+    console.log("Manual Reload captcha");
+    var captcha = null;
+        var imgs = document.querySelectorAll("img");
+        for (var i = 0; i < imgs.length; i++) {
+            if (typeof imgs[i].src !== 'undefined' && imgs[i].src !== null && imgs[i].src.length > 120) {
+                captcha = imgs[i];
+                break;
+            }
+        }
+
+        var ii = document.createElement("a");
+        ii.setAttribute('id', 'ReloadCaptcha');
+        ii.innerHTML = "Reload captcha";
+        ii.setAttribute('target', '_blank');
+        ii.setAttribute('href', 'view-source:' + imgs[i].src);
+        ii.style.width = "80px";
+        ii.style.height = "30px";
+        ii.style.textAlign = "center";
+        ii.style.display = "block";
+        ii.style.fontWeight = "bold";
+        ii.style.fontFamily = "Arial,Helvetica,sans-serif";
+        ii.style.backgroundColor = "rgb(0, 255, 12)";
+        captcha.parentNode.appendChild(ii);
+
+})();
+
