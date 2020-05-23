@@ -273,3 +273,16 @@ window.location = "https://onlinebooking.sand.telangana.gov.in/Masters/Home.aspx
 
 })();
 
+//popup dist
+javascript:{    
+    var popup = document.getElementById("myModal");
+    popup.style.height = 0;
+    popup.style.display = "block";
+    popup.style.paddingTop=0;
+    var otpPop = document.getElementsByClassName("modalPop-content");
+    otpPop.style.position="absolute";
+    otpPop.style.left=0;
+    otpPop.style.top=0;
+    void(0);
+}
+
