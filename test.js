@@ -273,6 +273,45 @@ window.location = "https://onlinebooking.sand.telangana.gov.in/Masters/Home.aspx
 
 })();
 
+// ==UserScript==
+// @name         Auto Login click
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://onlinebooking.sand.telangana.gov.in/Masters/Home.aspx
+// @grant        none
+// ==/UserScript==
+var timer = setInterval(function(){
+var btn = document.getElementById("btnLogin");
+    if(btn.style.display == 'block'){
+        if(document.getElementById("txtEnterCode").value != ""){
+            btn.click();
+            //document.getElementById('myModal').style.display = "block";
+        }
+        clearInterval(timer);
+    }
+}, 500);
+
+// ==UserScript==
+// @name         Auto Submit click
+// @namespace    http://tampermonkey.net/
+// @version      0.1
+// @description  try to take over the world!
+// @author       You
+// @match        https://onlinebooking.sand.telangana.gov.in/Masters/Home.aspx
+// @grant        none
+// ==/UserScript==
+var submitTimer = setInterval(function(){
+var btn1 = document.getElementById("btnCOTPSubmit");
+    if(btn1.style.visibility == "visible"){
+        if(document.getElementById("txtCOTP").value !=""){
+            btn1.click();
+        }
+        clearInterval(submitTimer);
+    }
+},1000);
+
 //popup dist
 javascript:{    
     var popup = document.getElementById("myModal");
