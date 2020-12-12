@@ -325,3 +325,5 @@ javascript:{
     void(0);
 }
 
+//vehicle
+javascript:{document.getElementById("ccMain_txtVehzNo").value="abcd1234";void(0);}
